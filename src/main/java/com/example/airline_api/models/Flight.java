@@ -24,8 +24,7 @@ public class Flight {
     private String departureTime;
 
     @JsonIgnoreProperties({"flights"})
-    @ManyToOne
-    @JoinColumn(name = "passenger_id")
+    @ManyToMany(mappedBy = "flights")
     private List<Passenger> passengers;
 
     public Flight(String destination, int capacity, String departureDate, String departureTime) {
@@ -85,5 +84,9 @@ public class Flight {
 
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
+    }
+
+    public void addPassenger(Passenger passenger){
+        this.passengers.add(passenger);
     }
 }
